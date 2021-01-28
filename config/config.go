@@ -7,8 +7,10 @@ import (
 	"gorm.io/gorm"
 )
 
+var connDB *gorm.DB
+
 //Connect Function
-func Connect() *gorm.DB {
+func Connect() {
 	var userDatabase, passDatabase, portDatabase, hostDatabase, nameDatabase string
 
 	userDatabase = "postgres"
@@ -32,6 +34,10 @@ func Connect() *gorm.DB {
 		fmt.Println("Koneksi Sukses")
 	}
 
-	return db
+	connDB = db
+}
 
+//GetConnection func
+func GetConnection() *gorm.DB {
+	return connDB
 }

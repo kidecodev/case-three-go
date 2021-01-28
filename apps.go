@@ -7,6 +7,8 @@ import (
 )
 
 func main() {
+	config.Connect()
+	migration.Migrations()
 	router := web.Route(gin.Default())
 	router.Run(":8080")
 

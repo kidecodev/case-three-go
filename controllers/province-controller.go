@@ -1,26 +1,40 @@
 package controllers
 
 import (
-	"frmgol/helper"
-	"frmgol/models"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
 //GetListProvince func
-func (strDB *StrDB) GetListProvince(c *gin.Context) {
-	var (
-		province []models.Provinces
-		result   gin.H
-	)
+func GetListProvince(c *gin.Context) {
+	// db := *config.GetConnection()
+	// var (
+	// 	province []models.Provinces
+	// 	result   gin.H
+	// )
 
-	strDB.DB.Find(&province)
-	if length := len(province); length <= 0 {
-		result = helper.ResponseApi(province, length)
-	} else {
-		result = helper.ResponseApi(province, length)
-	}
+	// &db.DB.Find(&province)
+	// if length := len(province); length <= 0 {
+	// 	result = helper.ResponseApi(province, length)
+	// } else {
+	// 	result = helper.ResponseApi(province, length)
+	// }
 
-	c.JSON(http.StatusOK, result)
+	c.JSON(http.StatusOK, nil)
+}
+
+//AddProvince func
+func AddProvince(context *gin.Context) {
+	context.JSON(http.StatusOK, nil)
+}
+
+//UpdateProvince func
+func UpdateProvince(context *gin.Context) {
+	context.JSON(http.StatusOK, nil)
+}
+
+//DeleteProvince func
+func DeleteProvince(context *gin.Context) {
+	context.JSON(http.StatusOK, nil)
 }

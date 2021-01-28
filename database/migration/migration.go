@@ -1,11 +1,10 @@
 package migration
 
-import (
-	"gorm.io/gorm"
-)
+import "frmgol/config"
 
 //Migrations function
-func Migrations(db *gorm.DB) {
-	ProvinceMigrate(db)
-	DistrictMigrate(db)
+func Migrations() {
+	db := *config.GetConnection()
+	ProvinceMigrate(&db)
+	DistrictMigrate(&db)
 }
