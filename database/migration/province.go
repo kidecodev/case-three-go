@@ -1,8 +1,17 @@
 package migration
 
-import "gorm.io/gorm"
+import (
+	"fmt"
+	"frmgol/models"
 
-//Province Migrate
+	"gorm.io/gorm"
+)
+
+//ProvinceMigrate function
 func ProvinceMigrate(db *gorm.DB) {
 
+	if db.Migrator().HasTable(&models.Provinces{}) {
+		db.Migrator().CreateTable(&models.Provinces{})
+		fmt.Println("Success Create Table Provinces")
+	}
 }
