@@ -10,12 +10,12 @@ import (
 func Route(router *gin.Engine) *gin.Engine {
 	router.GET("/province", controllers.GetListProvince)
 	router.POST("/province", controllers.AddProvince)
-	router.PUT("/province", controllers.UpdateProvince)
+	router.PUT("/province/:id", controllers.UpdateProvince)
 	router.DELETE("/province", controllers.DeleteProvince)
 
 	router.GET("/district", controllers.GetListDistrict)
 	router.POST("/district", controllers.AddDistrict)
-	router.PUT("/district", controllers.UpdateDistrict)
+	router.PUT("/district/:id", controllers.UpdateDistrict)
 	router.DELETE("/district", controllers.DeleteDistrict)
 
 	return router

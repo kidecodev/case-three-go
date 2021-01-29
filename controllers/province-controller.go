@@ -10,7 +10,7 @@ import (
 )
 
 //GetListProvince func
-func GetListProvince(c *gin.Context) {
+func GetListProvince(context *gin.Context) {
 	db := *config.GetConnection()
 	var (
 		province []models.Provinces
@@ -24,7 +24,7 @@ func GetListProvince(c *gin.Context) {
 		result = helper.ResponseApi(province, length)
 	}
 
-	c.JSON(http.StatusOK, result)
+	context.JSON(http.StatusOK, result)
 }
 
 //AddProvince func
@@ -33,9 +33,9 @@ func AddProvince(context *gin.Context) {
 
 	province := models.Provinces{Name: context.PostForm("name")}
 
-	result := db.Create(&province)
+	db.Create(&province)
 
-	context.JSON(http.StatusOK, result)
+	context.JSON(http.StatusOK, province.ID)
 }
 
 //UpdateProvince func
