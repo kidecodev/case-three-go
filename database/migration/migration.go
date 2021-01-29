@@ -7,4 +7,6 @@ func Migrations() {
 	db := *config.GetConnection()
 	ProvinceMigrate(&db)
 	DistrictMigrate(&db)
+	SubDistrictMigrate(&db)
+	PersonMigrate(&db)
 }
