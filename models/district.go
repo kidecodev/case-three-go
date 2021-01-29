@@ -1,6 +1,6 @@
 package models
 
-// District definition
+//Districts definition
 type Districts struct {
 	ID         uint `gorm:"primaryKey"`
 	ProvinceID uint

@@ -1,9 +1,7 @@
 package models
 
-import "gorm.io/gorm"
-
 // Provinces struct
 type Provinces struct {
-	gorm.Model
+	ID   uint `gorm:"primaryKey"`
 	Name string
 }

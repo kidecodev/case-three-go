@@ -1,6 +1,8 @@
 package web
 
 import (
+	"frmgol/controllers"
+
 	"github.com/gin-gonic/gin"
 )
 

@@ -1,6 +1,8 @@
 package main
 
 import (
+	"frmgol/config"
+	"frmgol/database/migration"
 	"frmgol/web"
 
 	"github.com/gin-gonic/gin"
