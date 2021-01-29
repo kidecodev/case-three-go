@@ -28,6 +28,24 @@ func GetListDistrict(context *gin.Context) {
 	context.JSON(http.StatusOK, result)
 }
 
+//GetDistrictByID func
+func GetDistrictByID(context *gin.Context) {
+	db := *config.GetConnection()
+	var (
+		district []models.Districts
+		result   gin.H
+	)
+
+	db.Find(&district)
+	if length := len(district); length <= 0 {
+		result = helper.ResponseApi(district, length)
+	} else {
+		result = helper.ResponseApi(district, length)
+	}
+
+	context.JSON(http.StatusOK, result)
+}
+
 //AddDistrict func
 func AddDistrict(context *gin.Context) {
 	db := *config.GetConnection()

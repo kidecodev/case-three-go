@@ -27,6 +27,24 @@ func GetListProvince(context *gin.Context) {
 	context.JSON(http.StatusOK, result)
 }
 
+//GetProvinceByID func
+func GetProvinceByID(context *gin.Context) {
+	db := *config.GetConnection()
+	var (
+		province []models.Provinces
+		result   gin.H
+	)
+
+	db.Find(&province)
+	if length := len(province); length <= 0 {
+		result = helper.ResponseApi(province, length)
+	} else {
+		result = helper.ResponseApi(province, length)
+	}
+
+	context.JSON(http.StatusOK, result)
+}
+
 //AddProvince func
 func AddProvince(context *gin.Context) {
 	db := *config.GetConnection()
