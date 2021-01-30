@@ -1,9 +1,7 @@
 package controllers
 
 import (
-	"frmgol/config"
-	"frmgol/helper"
-	"frmgol/models"
+	"frmgol/service"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -11,68 +9,35 @@ import (
 
 //GetListProvince func
 func GetListProvince(context *gin.Context) {
-	db := *config.GetConnection()
-	var (
-		province []models.Provinces
-		result   gin.H
-	)
-
-	db.Find(&province)
-	if length := len(province); length <= 0 {
-		result = helper.ResponseApi(province, length)
-	} else {
-		result = helper.ResponseApi(province, length)
-	}
+	result := service.GetListProvince(context)
 
 	context.JSON(http.StatusOK, result)
 }
 
 //GetProvinceByID func
 func GetProvinceByID(context *gin.Context) {
-	db := *config.GetConnection()
-	var (
-		province []models.Provinces
-		result   gin.H
-	)
-
-	db.Find(&province)
-	if length := len(province); length <= 0 {
-		result = helper.ResponseApi(province, length)
-	} else {
-		result = helper.ResponseApi(province, length)
-	}
+	result := service.GetProvinceByID(context.Param("id"))
 
 	context.JSON(http.StatusOK, result)
 }
 
 //AddProvince func
 func AddProvince(context *gin.Context) {
-	db := *config.GetConnection()
+	result := service.AddProvince(context)
 
-	province := models.Provinces{Name: context.PostForm("name")}
-
-	db.Create(&province)
-
-	context.JSON(http.StatusOK, province.ID)
+	context.JSON(http.StatusOK, result)
 }
 
 //UpdateProvince func
 func UpdateProvince(context *gin.Context) {
-	db := *config.GetConnection()
-	province := &models.Provinces{}
-	db.First(&province, context.Param("id"))
+	result := service.UpdateProvince(context)
 
-	province.Name = context.PostForm("name")
-
-	db.Save(&province)
-
-	context.JSON(http.StatusOK, province)
+	context.JSON(http.StatusOK, result)
 }
 
 //DeleteProvince func
 func DeleteProvince(context *gin.Context) {
-	db := *config.GetConnection()
+	result := service.DeleteProvince(context)
 
-	db.Delete(&models.Provinces{}, context.Param("id"))
-	context.JSON(http.StatusOK, nil)
+	context.JSON(http.StatusOK, result)
 }

@@ -1,9 +1,7 @@
 package controllers
 
 import (
-	"frmgol/config"
-	"frmgol/helper"
-	"frmgol/models"
+	"frmgol/service"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -11,71 +9,35 @@ import (
 
 //GetListPersons func
 func GetListPersons(context *gin.Context) {
-	db := *config.GetConnection()
-	var (
-		persons []models.Persons
-		result  gin.H
-	)
-
-	db.Find(&persons)
-	if length := len(persons); length <= 0 {
-		result = helper.ResponseApi(persons, length)
-	} else {
-		result = helper.ResponseApi(persons, length)
-	}
+	result := service.GetListPersons(context)
 
 	context.JSON(http.StatusOK, result)
 }
 
 //GetPersonByID func
 func GetPersonByID(context *gin.Context) {
-	db := *config.GetConnection()
-	var (
-		person []models.Persons
-		result gin.H
-	)
-
-	db.Find(&person)
-	if length := len(person); length <= 0 {
-		result = helper.ResponseApi(person, length)
-	} else {
-		result = helper.ResponseApi(person, length)
-	}
+	result := service.GetPersonByID(context.Param("id"))
 
 	context.JSON(http.StatusOK, result)
 }
 
 //AddPerson func
 func AddPerson(context *gin.Context) {
-	db := *config.GetConnection()
+	result := service.AddPerson(context)
 
-	person := models.Persons{
-		FullName: context.PostForm("name"),
-	}
-
-	db.Create(&person)
-
-	context.JSON(http.StatusOK, person.ID)
+	context.JSON(http.StatusOK, result)
 }
 
 //UpdatePerson func
 func UpdatePerson(context *gin.Context) {
-	db := *config.GetConnection()
-	person := &models.Persons{}
-	db.First(&person, context.Param("id"))
+	result := service.UpdatePerson(context)
 
-	person.FullName = context.PostForm("name")
-
-	db.Save(&person)
-
-	context.JSON(http.StatusOK, person)
+	context.JSON(http.StatusOK, result)
 }
 
 //DeletePerson func
 func DeletePerson(context *gin.Context) {
-	db := *config.GetConnection()
+	result := service.DeletePerson(context)
 
-	db.Delete(&models.Persons{}, context.Param("id"))
-
-	context.JSON(http.StatusOK, nil)
+	context.JSON(http.StatusOK, result)
 }

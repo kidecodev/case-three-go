@@ -24,10 +24,11 @@ https://gorm.io/docs/update.html
 - - gender [M | F]
 - - zona location [WIB | WITA | WIT]
 pastikan dapat melakukan :
-provinces : post| get all with pagination | put| delete | show one base id
-districts : post| get all with pagination | put| delete | show one base id
-sub districts : post| get all with pagination | put| delete | show one base id
-persons : post| get all with pagination | put| delete | show one base id
+- provinces : post| get all with pagination | put| delete | show one base id
+- districts : post| get all with pagination | put| delete | show one base id
+- sub districts : post| get all with pagination | put| delete | show one base id
+- persons : post| get all with pagination | put| delete | show one base id
+
 please dont show id refrence, but show data from its table
 example:
 show district data: 

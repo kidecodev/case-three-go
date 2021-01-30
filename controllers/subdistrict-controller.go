@@ -1,88 +1,43 @@
 package controllers
 
 import (
-	"frmgol/config"
-	"frmgol/helper"
-	"frmgol/models"
+	"frmgol/service"
 	"net/http"
-	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
 
 //GetListSubDistrict func
 func GetListSubDistrict(context *gin.Context) {
-	db := *config.GetConnection()
-	var (
-		subdistrict []models.SubDistricts
-		result      gin.H
-	)
-
-	db.Find(&subdistrict)
-	if length := len(subdistrict); length <= 0 {
-		result = helper.ResponseApi(subdistrict, length)
-	} else {
-		result = helper.ResponseApi(subdistrict, length)
-	}
+	result := service.GetListSubDistrict(context)
 
 	context.JSON(http.StatusOK, result)
 }
 
 //GetSubDistrictByID func
 func GetSubDistrictByID(context *gin.Context) {
-	db := *config.GetConnection()
-	var (
-		subdistrict []models.SubDistricts
-		result      gin.H
-	)
-
-	db.Find(&subdistrict)
-	if length := len(subdistrict); length <= 0 {
-		result = helper.ResponseApi(subdistrict, length)
-	} else {
-		result = helper.ResponseApi(subdistrict, length)
-	}
+	result := service.GetSubDistrictByID(context.Param("id"))
 
 	context.JSON(http.StatusOK, result)
 }
 
 //AddSubDistrict func
 func AddSubDistrict(context *gin.Context) {
-	db := *config.GetConnection()
+	result := service.AddSubDistrict(context)
 
-	districtid, _ := strconv.ParseUint(context.PostForm("district_id"), 10, 8)
-
-	subdistrict := models.SubDistricts{
-		DistrictID: uint(districtid),
-		Name:       context.PostForm("name"),
-	}
-
-	db.Create(&subdistrict)
-
-	context.JSON(http.StatusOK, subdistrict.ID)
+	context.JSON(http.StatusOK, result)
 }
 
 //UpdateSubDistrict func
 func UpdateSubDistrict(context *gin.Context) {
-	db := *config.GetConnection()
-	subdistrict := &models.SubDistricts{}
-	db.First(&subdistrict, context.Param("id"))
+	result := service.UpdateSubDistrict(context)
 
-	districtid, _ := strconv.ParseUint(context.PostForm("district_id"), 10, 8)
-
-	subdistrict.DistrictID = uint(districtid)
-	subdistrict.Name = context.PostForm("name")
-
-	db.Save(&subdistrict)
-
-	context.JSON(http.StatusOK, subdistrict)
+	context.JSON(http.StatusOK, result)
 }
 
 //DeleteSubDistrict func
 func DeleteSubDistrict(context *gin.Context) {
-	db := *config.GetConnection()
+	result := service.DeleteSubDistrict(context)
 
-	db.Delete(&models.SubDistricts{}, context.Param("id"))
-
-	context.JSON(http.StatusOK, nil)
+	context.JSON(http.StatusOK, result)
 }

@@ -1,88 +1,43 @@
 package controllers
 
 import (
-	"frmgol/config"
-	"frmgol/helper"
-	"frmgol/models"
+	"frmgol/service"
 	"net/http"
-	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
 
 //GetListDistrict func
 func GetListDistrict(context *gin.Context) {
-	db := *config.GetConnection()
-	var (
-		district []models.Districts
-		result   gin.H
-	)
-
-	db.Find(&district)
-	if length := len(district); length <= 0 {
-		result = helper.ResponseApi(district, length)
-	} else {
-		result = helper.ResponseApi(district, length)
-	}
+	result := service.GetListDistrict(context)
 
 	context.JSON(http.StatusOK, result)
 }
 
 //GetDistrictByID func
 func GetDistrictByID(context *gin.Context) {
-	db := *config.GetConnection()
-	var (
-		district []models.Districts
-		result   gin.H
-	)
-
-	db.Find(&district)
-	if length := len(district); length <= 0 {
-		result = helper.ResponseApi(district, length)
-	} else {
-		result = helper.ResponseApi(district, length)
-	}
+	result := service.GetDistrictByID(context.Param("id"))
 
 	context.JSON(http.StatusOK, result)
 }
 
 //AddDistrict func
 func AddDistrict(context *gin.Context) {
-	db := *config.GetConnection()
+	result := service.AddDistrict(context)
 
-	provinceid, _ := strconv.ParseUint(context.PostForm("province_id"), 10, 8)
-
-	district := models.Districts{
-		ProvinceID: uint(provinceid),
-		Name:       context.PostForm("name"),
-	}
-
-	db.Create(&district)
-
-	context.JSON(http.StatusOK, district.ID)
+	context.JSON(http.StatusOK, result)
 }
 
 //UpdateDistrict func
 func UpdateDistrict(context *gin.Context) {
-	db := *config.GetConnection()
-	district := &models.Districts{}
-	db.First(&district, context.Param("id"))
+	result := service.UpdateDistrict(context)
 
-	provinceid, _ := strconv.ParseUint(context.PostForm("province_id"), 10, 8)
-
-	district.ProvinceID = uint(provinceid)
-	district.Name = context.PostForm("name")
-
-	db.Save(&district)
-
-	context.JSON(http.StatusOK, district)
+	context.JSON(http.StatusOK, result)
 }
 
 //DeleteDistrict func
 func DeleteDistrict(context *gin.Context) {
-	db := *config.GetConnection()
+	result := service.DeleteDistrict(context)
 
-	db.Delete(&models.Districts{}, context.Param("id"))
-
-	context.JSON(http.StatusOK, nil)
+	context.JSON(http.StatusOK, result)
 }
