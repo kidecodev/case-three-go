@@ -26,6 +26,7 @@ type PersonResponse struct {
 	BirthPlace   string
 	Gender       string
 	ZoneLocation string
+	ProfilUrl    string
 	SubDistrict  string
 	District     string
 	Province     string

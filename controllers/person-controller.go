@@ -35,6 +35,13 @@ func UpdatePerson(context *gin.Context) {
 	context.JSON(http.StatusOK, result)
 }
 
+//UploadPhoto func
+func UploadPhoto(context *gin.Context) {
+	result := service.UploadPhoto(context)
+
+	context.JSON(http.StatusOK, result)
+}
+
 //DeletePerson func
 func DeletePerson(context *gin.Context) {
 	result := service.DeletePerson(context)

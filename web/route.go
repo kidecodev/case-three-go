@@ -32,5 +32,7 @@ func Route(router *gin.Engine) *gin.Engine {
 	router.PUT("/person/:id", controllers.UpdatePerson)
 	router.DELETE("/person", controllers.DeletePerson)
 
+	router.PUT("/person/:id/photo", controllers.UploadPhoto)
+
 	return router
 }

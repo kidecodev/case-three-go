@@ -9,4 +9,5 @@ func Migrations() {
 	DistrictMigrate(&db)
 	SubDistrictMigrate(&db)
 	PersonMigrate(&db)
+	AddPhotoProfilToPerson(&db)
 }

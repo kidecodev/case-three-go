@@ -132,6 +132,37 @@ func UpdatePerson(context *gin.Context) interface{} {
 	return helper.ResponseFailed(result.Error)
 }
 
+//UploadPhoto func
+func UploadPhoto(context *gin.Context) interface{} {
+	db := *config.GetConnection()
+	var (
+		person   models.Persons
+		response helper.PersonResponse
+	)
+
+	result := db.First(&person, context.Param("id"))
+
+	if result.RowsAffected > 0 {
+		file, _ := context.FormFile("photo")
+		path := "images/" + file.Filename
+
+		if err := context.SaveUploadedFile(file, path); err != nil {
+			return helper.ResponseFailed(err.Error())
+		}
+
+		person.ProfilUrl = path
+
+		result := db.Save(&person)
+
+		if result.RowsAffected > 0 {
+			db.Model(&person).Select("persons.*, sub_districts.name as sub_district, provinces.name as province, districts.name as district").Joins("left join sub_districts on sub_districts.id = persons.sub_district_id left join districts on districts.id = sub_districts.district_id left join provinces on provinces.id = districts.province_id").Scan(&response)
+			return helper.ResponseSuccessSingle(&response)
+		}
+	}
+
+	return helper.ResponseFailed(result.Error)
+}
+
 //DeletePerson func
 func DeletePerson(context *gin.Context) interface{} {
 	db := *config.GetConnection()
