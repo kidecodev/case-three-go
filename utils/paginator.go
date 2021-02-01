@@ -60,7 +60,9 @@ func Paging(p *Param, result interface{}) *Paginator {
 		offset = (p.Page - 1) * p.Limit
 	}
 
-	db.Limit(p.Limit).Offset(offset).Find(result)
+	db.Limit(p.Limit).
+		Offset(offset).
+		Find(result)
 
 	paginator.TotalRecord = count
 	paginator.Records = result
@@ -115,7 +117,12 @@ func PagingCustomResult(p *Param, models interface{}, response interface{}) *Pag
 		offset = (p.Page - 1) * p.Limit
 	}
 
-	db.Model(models).Select(p.Query).Joins(p.Join).Scan(response)
+	db.Model(models).
+		Select(p.Query).
+		Joins(p.Join).
+		Limit(p.Limit).
+		Offset(offset).
+		Scan(response)
 
 	paginator.TotalRecord = count
 	paginator.Records = response
@@ -140,5 +147,6 @@ func PagingCustomResult(p *Param, models interface{}, response interface{}) *Pag
 }
 
 func countRecords(db *gorm.DB, anyType interface{}, count *int64) {
-	db.Model(anyType).Count(count)
+	db.Model(anyType).
+		Count(count)
 }

@@ -107,7 +107,9 @@ func UpdateDistrict(context *gin.Context) interface{} {
 
 			result := db.Save(&district)
 			if result.RowsAffected > 0 {
-				db.Model(&district).Select("districts.id, districts.name, provinces.name as province").Joins("left join provinces on provinces.id = districts.province_id").Scan(&response)
+				db.Model(&district).Select("districts.id, districts.name, provinces.name as province").
+					Joins("left join provinces on provinces.id = districts.province_id").
+					Scan(&response)
 				return helper.ResponseSuccessSingle(&response)
 			}
 		}
