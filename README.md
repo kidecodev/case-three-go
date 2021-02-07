@@ -1,43 +1,22 @@
-# Case Gin Gorm
+# Case Point 3
 
-silahkan pelajari dari dokumentasi ini
-https://gorm.io/docs/update.html
+Penjelasan
 
-- buat satu buah tabel districts
-- dimana berelasi dengan provinces
-- wajib migration
-- provinces : put | delete
-- districts : post| get| put| delete
+https://gist.github.com/cahyo-refactory/2b2df5fc78dd7b0141d962eceb4acfeb
 
-------------------------------------------------------------------
-# Case Point Two
-- Tabel sub districs
-- Tabel persons
-- - id
-- - sub district id
-- - nip
-- - full name
-- - first name
-- - last name
-- - birth date
-- - birth place
-- - gender [M | F]
-- - zona location [WIB | WITA | WIT]
-pastikan dapat melakukan :
-- provinces : post| get all with pagination | put| delete | show one base id
-- districts : post| get all with pagination | put| delete | show one base id
-- sub districts : post| get all with pagination | put| delete | show one base id
-- persons : post| get all with pagination | put| delete | show one base id
+Environment Variables
+```dotenv
+DB_HOST=
+DB_USER=
+DB_PASSWORD=
+DB_PORT=
+DB_NAME=
 
-please dont show id refrence, but show data from its table
-example:
-show district data: 
-{
-"district":"magelang"
-"province":"jawa tengah"
-}
-dont show 
-{
-"district":"magelang"
-"province_id":1
-}
+USE_MIGRATE=[yes/no]
+USE_SEEDER=[yes/no]
+
+RAJAONGKIR_API_URL=
+RAJAONGKIR_API_KEY=
+
+SENTRY_DSN=
+```

@@ -1,13 +1,23 @@
 package migration
 
-import "frmgol/config"
+import (
+	"frmgol/config"
+	"frmgol/utils"
+)
 
 //Migrations function
 func Migrations() {
 	db := *config.GetConnection()
-	ProvinceMigrate(&db)
-	DistrictMigrate(&db)
-	SubDistrictMigrate(&db)
-	PersonMigrate(&db)
-	AddPhotoProfilToPerson(&db)
+
+	if utils.GetEnv("USE_MIGRATE") == "yes" {
+		provinceMigrate(&db)
+		districtMigrate(&db)
+		subDistrictMigrate(&db)
+		personMigrate(&db)
+		addPhotoProfilToPerson(&db)
+		personOfficeLocationMigrate(&db)
+		officeLocationMigrate(&db)
+		usersMigrate(&db)
+	}
+
 }

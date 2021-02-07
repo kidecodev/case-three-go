@@ -7,8 +7,7 @@ import (
 	"gorm.io/gorm"
 )
 
-//ProvinceMigrate function
-func ProvinceMigrate(db *gorm.DB) {
+func provinceMigrate(db *gorm.DB) {
 
 	if !db.Migrator().HasTable(&models.Provinces{}) {
 		db.Migrator().CreateTable(&models.Provinces{})

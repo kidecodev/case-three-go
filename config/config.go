@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"frmgol/utils"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -13,11 +14,11 @@ var connDB *gorm.DB
 func Connect() {
 	var userDatabase, passDatabase, portDatabase, hostDatabase, nameDatabase string
 
-	userDatabase = "postgres"
-	passDatabase = "password"
-	portDatabase = "5432"
-	hostDatabase = "localhost"
-	nameDatabase = "penduduk"
+	userDatabase = utils.GetEnv("DB_USER")
+	passDatabase = utils.GetEnv("DB_PASSWORD")
+	portDatabase = utils.GetEnv("DB_PORT")
+	hostDatabase = utils.GetEnv("DB_HOST")
+	nameDatabase = utils.GetEnv("DB_NAME")
 
 	dsn :=
 		" host=" + hostDatabase +

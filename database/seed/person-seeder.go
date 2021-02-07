@@ -1,14 +1,12 @@
-package migration
+package seed
 
 import (
 	"fmt"
 	"frmgol/models"
-
 	"gorm.io/gorm"
 )
 
-//PersonMigrate function
-func personMigrate(db *gorm.DB) {
+func personSeeder(db *gorm.DB) {
 	if !db.Migrator().HasTable(&models.Persons{}) {
 		db.Migrator().CreateTable(&models.Persons{})
 		fmt.Println("Success Create Table Persons")
