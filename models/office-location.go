@@ -1,7 +1,9 @@
 package models
 
+import "gorm.io/gorm"
+
 type OfficeLocations struct {
-	ID uint
-	OfficeLocationID uint
-	PersonID uint
+	gorm.Model
+	SubDistrictID uint
+	Name string
 }

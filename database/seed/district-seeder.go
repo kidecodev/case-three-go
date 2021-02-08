@@ -28,7 +28,7 @@ type resultDistrictResponse struct {
 }
 
 func districtsSeeder(db *gorm.DB) {
-	db.Exec("DELETE FROM districts")
+	db.Exec("DELETE FROM districts CASCADE")
 	data := service.GetDataFromRajaOngkir(utils.GetEnv("RAJAONGKIR_API_URL") + "/city?key=" + utils.GetEnv("RAJAONGKIR_API_KEY"))
 	var (
 		response rajaOngkirDistrictResponse

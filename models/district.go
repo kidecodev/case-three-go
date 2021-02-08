@@ -1,8 +1,11 @@
 package models
 
+import "gorm.io/gorm"
+
 //Districts definition
 type Districts struct {
-	ID         uint `gorm:"primaryKey"`
+	gorm.Model
 	ProvinceID uint
 	Name       string
+	SubDistrict []SubDistricts `gorm:"ForeignKey:DistrictID"`
 }

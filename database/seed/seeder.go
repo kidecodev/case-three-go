@@ -14,6 +14,8 @@ func Seeder() {
 		districtsSeeder(&db)
 		subdistrictSeeder(&db)
 		personSeeder(&db)
+		officeSeeder(&db)
+		personLocationSeeder(&db)
 	}
 
 }

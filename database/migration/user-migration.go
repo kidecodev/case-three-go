@@ -7,8 +7,8 @@ import (
 )
 
 func usersMigrate(db *gorm.DB) {
-	if !db.Migrator().HasTable(&models.Districts{}) {
-		db.Migrator().CreateTable(&models.Districts{})
-		fmt.Println("Success Create Table Districts")
+	if !db.Migrator().HasTable(&models.Users{}) {
+		db.Migrator().CreateTable(&models.Users{})
+		fmt.Println("Success Create Table Users")
 	}
 }

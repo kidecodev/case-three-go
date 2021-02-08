@@ -7,8 +7,8 @@ import (
 )
 
 func personOfficeLocationMigrate(db *gorm.DB) {
-	if !db.Migrator().HasTable(&models.Districts{}) {
-		db.Migrator().CreateTable(&models.Districts{})
-		fmt.Println("Success Create Table Districts")
+	if !db.Migrator().HasTable(&models.OfficePersonLocations{}) {
+		db.Migrator().CreateTable(&models.OfficePersonLocations{})
+		fmt.Println("Success Create Table Office Person Locations")
 	}
 }

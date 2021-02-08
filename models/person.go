@@ -12,7 +12,8 @@ type Persons struct {
 	LastName      string
 	BirthDate     string
 	BirthPlace    string
+	ProfilUrl     string
 	Gender        string
 	ZoneLocation  string
-	ProfilUrl     string
+
 }

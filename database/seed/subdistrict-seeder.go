@@ -7,7 +7,7 @@ import (
 )
 
 func subdistrictSeeder(db *gorm.DB) {
-	db.Exec("DELETE FROM sub_districts")
+	db.Exec("DELETE FROM sub_districts CASCADE")
 
 	subdistrictTemp := [...][3]interface{}{
 		{1, 341, "BATU SOPANG"},
@@ -27,9 +27,9 @@ func subdistrictSeeder(db *gorm.DB) {
 	var subDistrict models.SubDistricts
 
 	for _, value := range subdistrictTemp {
-		subDistrict.ID = 0
+		subDistrict.ID = uint(value[0].(int))
 		subDistrict.Name = fmt.Sprintf("%v", value[2])
-		subDistrict.DistrictID = value[1].(uint)
+		subDistrict.DistrictID = uint(value[1].(int))
 		db.Create(&subDistrict)
 	}
 }

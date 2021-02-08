@@ -24,7 +24,7 @@ type resultProvinceResponse struct {
 }
 
 func provincesSeeder(db *gorm.DB) {
-	db.Exec("DELETE FROM provinces")
+	db.Exec("DELETE FROM provinces CASCADE")
 	data := service.GetDataFromRajaOngkir(utils.GetEnv("RAJAONGKIR_API_URL") + "/province?key=" + utils.GetEnv("RAJAONGKIR_API_KEY"))
 	var (
 		response rajaOngkirProvinceResponse

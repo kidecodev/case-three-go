@@ -2,7 +2,7 @@ package models
 
 type Users struct {
 	ID uint
-	email string
-	role string
-	password string
+	Email string
+	Role string
+	Password string
 }
