@@ -16,6 +16,7 @@ func Seeder() {
 		personSeeder(&db)
 		officeSeeder(&db)
 		personLocationSeeder(&db)
+		userSeeder(&db)
 	}
 
 }
