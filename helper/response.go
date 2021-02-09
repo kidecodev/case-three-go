@@ -37,10 +37,5 @@ type ReportCityResponse struct {
 	ID          string
 	FullName    string
 	Total     	string
-	Locations   Locations
-}
-
-//Locations struct
-type Locations struct {
-	Name   []string
+	Locations   []string
 }

@@ -56,11 +56,9 @@ func Route(router *gin.Engine) *gin.Engine {
 
 		// Add Route Report
 		group.GET("/report/person/count", controllers.GetReportCount)
-		//group.GET("/report/person/city", controllers.GetReportCity)
-		//group.GET("/report/person/gender", controllers.GetReportGender)
+		group.GET("/report/person/city", controllers.GetReportCity)
+		group.GET("/report/person/gender", controllers.GetReportByGender)
 	}
-
-	router.GET("/report/person/city", controllers.GetReportCity)
 
 
 	return router
